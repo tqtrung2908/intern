@@ -1,0 +1,18 @@
+
+{%if category.category_set.all %}
+    <li><span class="caret">{{category}}</span>
+{% else %}
+    <li><span>{{category}}</span>
+{% endif %}
+
+    {%if category.category_set.all %}
+        <ul class="nested">
+         {%for ch in category.category_set.all %}
+              {%with category=ch template_name="store/tree_view.html" %}
+                   {%include template_name%}
+              {%endwith%}
+         {%endfor%}
+         </ul>
+
+    {%endif%}
+</li>

@@ -1,0 +1,27 @@
+{% extends 'core.html' %}
+
+{% block content %}
+    <table class="table table_striped table-hover table-bordered">
+        {% for product in product_list %}
+            <tr>
+                <td>
+               <strong> <a href="{% url 'product_show' product.id %}" > {{ product }}</a></strong>
+                </td>
+
+                <td>
+                    <a href="{% url 'product_update' product.id %}" class="py-1 px-6 rounded-xl text-white bg-blue-500 hover:bg-blue-700">Update</a>
+                    <a href="{% url 'product_delete' product.id %}" class="py-1 px-6 rounded-xl text-white bg-blue-500 hover:bg-blue-700">Delete</a>
+                </td>
+            </tr>
+
+
+        {% empty %}
+            <strong><div style="text-align: center;">Don't have any products yet.</div></strong>
+        {% endfor %}
+    </table>
+
+    <div style="text-align: center;">
+        <strong><a href="/add_product">Add product</a></strong>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'core.html' %}
+
+{% block content %}
+<div style="text-align: center;">
+    <br/>
+    <h1>{{ product }}</h1>
+        <li>{{ product.category }}</li>
+        <li>{{ product.description }}</li>
+        <li>{{ product.price }}</li>
+        <img src="{{ product.image.url }}" >
+</div>
+{% endblock %}

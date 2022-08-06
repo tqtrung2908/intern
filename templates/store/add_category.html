@@ -1,0 +1,33 @@
+{% extends 'core.html' %}
+
+{% block content %}
+    <div class="max-w-lg mx-auto flex flex-wrap p-6">
+        <div class="w-full bg-gray-100 p-6 rounded-xl">
+            <h1 class="mb-6 text-2xl">Add category</h1>
+            <br><br/>
+
+        {% if submitted %}
+            Your Category Was Created Successfully!!!!
+        {% else %}
+
+
+            <form method="POST" enctype="multipart/form-data">
+
+            <!-- Security token -->
+            {% csrf_token %}
+
+            <!-- Using the formset -->
+            {{ form.as_p }}
+
+            <input type="submit" class="py-4 px-6 rounded-xl text-white bg-blue-500 hover:bg-blue-700" value="Submit">
+            </form>
+
+            {% if img_obj %}
+                <h3>Successfully uploaded : {{ img_obj.title }}</h3>
+
+                <img src="{{ img.obj.image.urk }}" alt="connect" style="max-height: 300px">
+            {% endif %}
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

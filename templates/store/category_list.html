@@ -1,0 +1,25 @@
+{% extends 'core.html' %}
+
+{% block content %}
+    <ul>
+        {% for category in category_list %}
+            {% include "store/tree_view.html" %}
+        {% endfor %}
+    </ul>
+    <script>
+        var toggler = document.getElementsByClassName("caret");
+        var i;
+
+        for (i = 0; i < toggler.length; i++) {
+          toggler[i].addEventListener("click", function() {
+            this.parentElement.querySelector(".nested").classList.toggle("active");
+            this.classList.toggle("caret-down");
+          });
+        }
+    </script>
+
+    <div style="text-align: center;">
+        <strong><a href="/add_category">Add category</a></strong>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'core.html' %}
+
+{% block content %}
+    <div class="max-w-lg mx-auto flex flex-wrap p-6">
+        <div class="w-full bg-gray-100 p-6 rounded-xl">
+            <h1 class="mb-6 text-2xl">Update product</h1>
+            <br><br/>
+
+        {% if submitted %}
+            Your Product Was Created Successfully!!!!
+        {% else %}
+
+
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+                {{ imageform.management_form }}
+            {% for form in imageform %}
+                {{ form }}
+            {% endfor %}
+            <input type="submit" class="py-4 px-6 rounded-xl text-white bg-blue-500 hover:bg-blue-700" value="Submit">
+            </form>
+
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

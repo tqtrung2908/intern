@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    .caret {
+      cursor: pointer;
+      -webkit-user-select: none; /* Safari 3.1+ */
+      -moz-user-select: none; /* Firefox 2+ */
+      -ms-user-select: none; /* IE 10+ */
+      user-select: none;
+    }
+    .caret::before {
+      content: "\25B6";
+      color: black;
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    .caret-down::before {
+      -ms-transform: rotate(90deg); /* IE 9 */
+      -webkit-transform: rotate(90deg); /* Safari */'
+      transform: rotate(90deg);
+    }
+    .nested {
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+</style>
+
+    {%  load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    <title>Home</title>
+</head>
+<body>
+    <nav class="border-b border-gray-300">
+        <div class="max-w-6xl mx-auto py-2 px-6 xl:px-0 flex items-center justify-between">
+            <div class="menu-left flex items-center space-x-6">
+                <a href="#" class="py-4 text-lg text-blue-500 font-semibold">TMOBILE CENTER</a>
+
+                <ul class="flex items-center space-x-4">
+                    <li><a href="{% url 'home' %}">Home</a> </li>
+                    <li><a href="{% url 'all_categories' %}">Category</a> </li>
+                    <li><a href="{% url 'all_products' %}">Product</a> </li>
+                    <li><a href="#">Contact</a> </li>
+                </ul>
+            </div>
+
+            <div class="menu-right flex items-center space-x-4">
+                {% if user.is_authenticated %}
+                    <ul class="flex items-center space-x-4">
+                        <li>Logged in as {{ user.username }} </li>
+                        <li><a href="{% url 'logout' %}">Log out</a><li>
+                    </ul>
+                {% else %}
+                    <a href="{% url 'signin' %}">Sign In</a>
+                {% endif %}
+
+            </div>
+        </div>
+    </nav>
+
+    <div class ="container-fluid">
+        <img src="{% static 'images/banner1.jpg' %}" class="responsive-img" style="max-width: 100%">
+    </div>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
